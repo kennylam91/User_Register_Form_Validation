@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+</head>
+<body>
+<h3><a th:href="@{/user/create}">Add new user</a></h3>
+<h2>User List</h2>
+<table border="2">
+    <thead>
+    <td>No</td>
+    <td>FirstName</td>
+    <td>LastName</td>
+    <td>PhoneNumber</td>
+    <td>Age</td>
+    <td>Email</td>
+    </thead>
+    <tr th:each="user:${users}">
+        <td th:text="${userStat.count}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.phoneNumber}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.email}"></td>
+
+    </tr>
+</table>
+
+<div>
+    <a th:href="@{'/user/list'(page=${users.number - 1})}" th:if="${users.hasPrevious()}">Previous</a>
+    <span th:text="${users.number + 1}"></span>/
+    <span th:text="${users.totalPages}"></span>
+    <a th:href="@{'/user/list'(page=${users.number + 1})}" th:if="${users.hasNext()}">Next</a>
+</div>
+
+<!--<div>-->
+<!--    <form action="">-->
+<!--        <h3>Search by product:</h3>-->
+<!--        <input type="text" name="productSearch">-->
+<!--        <input type="submit" value="Search">-->
+<!--    </form>-->
+<!--</div>-->
+</body>
+</html>
